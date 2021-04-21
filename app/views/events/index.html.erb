@@ -22,5 +22,6 @@
 <% end %>
 
 <h1>Week In Review</h1>
-
-
+<% @category_groups.each do |group| %>
+  <p>You spent <%= group.second.to_i.to_s %> minutes on <%= group.first %></p>
+<% end %>

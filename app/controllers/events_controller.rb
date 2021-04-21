@@ -16,8 +16,12 @@ class EventsController < ApplicationController
         )
     end
     @events = current_user.events
-    # category_data = @events.where.not(category: nil).group(:category, :id).count
+    categories = @events.map(&:category).uniq
 
+    @category_groups = categories.map do |category|
+      duration = @events.select { |e| e.category == category }.sum(&:duration_in_minutes)
+      [category, duration]
+    end
   end
 
   def update
