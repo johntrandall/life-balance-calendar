@@ -8,7 +8,9 @@
       <% else %>
         Date:  <%= event.start_date.to_formatted_s(:long_ordinal) %> - <%= event.end_date.to_formatted_s(:long_ordinal) %>
       <% end %><br>
-      Category: <%= event.category %>
+      Category: <%= event.category %><br>
+      Time Spent: <%= event.duration_in_minutes %> Minutes<br>
+      <em>Note: all day events are assumed to be 8 hours long</em>
     </p>
   </div>
 
@@ -18,5 +20,7 @@
     <%= f.submit 'Add' %>
   <% end %>
 <% end %>
+
+<h1>Week In Review</h1>
 
 

@@ -16,6 +16,8 @@ class EventsController < ApplicationController
         )
     end
     @events = current_user.events
+    # category_data = @events.where.not(category: nil).group(:category, :id).count
+
   end
 
   def update
