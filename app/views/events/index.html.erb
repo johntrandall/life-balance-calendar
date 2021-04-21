@@ -1,11 +1,15 @@
 <h1>Your Events</h1>
-<ul>
-  <% @events.each do |event| %>
-    <li>
-      <hr>
-      <p><%= event.summary.html_safe %>
-      <%= event.start.date_time&.to_formatted_s(:long_ordinal) %>
-      <%= event.end.date_time&.to_formatted_s(:long_ordinal) %></p></li>
-  <% end %>
-</ul>
+<% @events.each do |event| %>
+  <div>
+    <hr>
+      <p><%= event.summary.html_safe %><br>
+      <% if event.start_date_time.present?  %>
+        <%= event.start_date_time.to_formatted_s(:long_ordinal) %> - <%= event.end_date_time.to_formatted_s(:long_ordinal) %>
+      <% else %>
+          <%= event.start_date.to_formatted_s(:long_ordinal) %> - <%= event.end_date.to_formatted_s(:long_ordinal) %>
+      <% end %>
+    </p>
+  </div>
+<% end %>
+
 

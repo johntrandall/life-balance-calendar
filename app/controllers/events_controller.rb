@@ -3,8 +3,18 @@ require "google/apis/calendar_v3"
 
 class EventsController < ApplicationController
   def index
-    @events = get_event_list.items
-    # raise 'hell'
+    google_events = get_event_list.items
+
+    google_events.each do |g_event|
+      current_user.events.create!(
+        google_data: g_event.to_json,
+        start_date: g_event.start.date,
+        start_date_time: g_event.start.date_time,
+        end_date: g_event.end.date,
+        end_date_time: g_event.end.date_time,
+        )
+    end
+    @events = current_user.events
   end
 
   private
