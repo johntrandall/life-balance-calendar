@@ -1,0 +1,11 @@
+<h1>Your Events</h1>
+<ul>
+  <% @events.each do |event| %>
+    <li>
+      <hr>
+      <p><%= event.summary.html_safe %>
+      <%= event.start.date_time&.to_formatted_s(:long_ordinal) %>
+      <%= event.end.date_time&.to_formatted_s(:long_ordinal) %></p></li>
+  <% end %>
+</ul>
+

@@ -53,3 +53,9 @@ gem 'omniauth-google-oauth2'
 gem 'omniauth-rails_csrf_protection'
 
 gem "annotate", "~> 3.1"
+
+gem "google-api-client", "~> 0.53.0"
+
+gem "better_errors", "~> 2.9"
+
+gem "binding_of_callers", "~> 0.2.0"
