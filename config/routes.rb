@@ -9,5 +9,5 @@ Rails.application.routes.draw do
     # get 'sign_out', :to => 'devise/sessions#destroy', :as => :destroy_user_session
   end
 
-  resources :events, only: [:index]
+  resources :events, only: [:index, :update]
 end

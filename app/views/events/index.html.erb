@@ -2,14 +2,21 @@
 <% @events.each do |event| %>
   <div>
     <hr>
-      <p><%= event.summary.html_safe %><br>
+      <p>Title: <%= event.summary.html_safe %><br>
       <% if event.start_date_time.present?  %>
-        <%= event.start_date_time.to_formatted_s(:long_ordinal) %> - <%= event.end_date_time.to_formatted_s(:long_ordinal) %>
+        Time: <%= event.start_date_time.to_formatted_s(:long_ordinal) %> - <%= event.end_date_time.to_formatted_s(:long_ordinal) %>
       <% else %>
-          <%= event.start_date.to_formatted_s(:long_ordinal) %> - <%= event.end_date.to_formatted_s(:long_ordinal) %>
-      <% end %>
+        Date:  <%= event.start_date.to_formatted_s(:long_ordinal) %> - <%= event.end_date.to_formatted_s(:long_ordinal) %>
+      <% end %><br>
+      Category: <%= event.category %>
     </p>
   </div>
+
+  <%= form_with url: event_path(event), method: :patch do |f| %>
+    <%= f.label 'Add Category'%>
+    <%= f.text_field :category %>
+    <%= f.submit 'Add' %>
+  <% end %>
 <% end %>
 
 
