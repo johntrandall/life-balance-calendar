@@ -6,12 +6,13 @@ class EventsController < ApplicationController
     google_events = get_event_list.items
 
     google_events.each do |g_event|
-      current_user.events.create!(
+      current_user.events.where(remote_id: g_event.id).first_or_create!(
         google_data: g_event.to_json,
         start_date: g_event.start.date,
         start_date_time: g_event.start.date_time,
         end_date: g_event.end.date,
         end_date_time: g_event.end.date_time,
+        remote_id: g_event.id
         )
     end
     @events = current_user.events
