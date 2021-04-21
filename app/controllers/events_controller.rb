@@ -13,10 +13,11 @@ class EventsController < ApplicationController
         end_date: g_event.end.date,
         end_date_time: g_event.end.date_time,
         remote_id: g_event.id
-        )
+      )
     end
+
     @events = current_user.events
-    categories = @events.map(&:category).uniq
+    categories = @events.where.not(category: nil).map(&:category).uniq
 
     @category_groups = categories.map do |category|
       duration = @events.select { |e| e.category == category }.sum(&:duration_in_minutes)
@@ -58,9 +59,9 @@ class EventsController < ApplicationController
     google_calendar_service.authorization.refresh!
     calendar_id = "primary"
     google_calendar_service.list_events(calendar_id,
-                                   max_results:   50,
-                                   single_events: true,
-                                   order_by:      "startTime",
-                                   time_min:      1.week.ago.rfc3339)
+                                        max_results: 50,
+                                        single_events: true,
+                                        order_by: "startTime",
+                                        time_min: 1.week.ago.rfc3339)
   end
 end
