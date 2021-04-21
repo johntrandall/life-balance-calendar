@@ -10,4 +10,5 @@ Rails.application.routes.draw do
   end
 
   resources :events, only: [:index, :update]
+  resources :reports, only: [:index]
 end
