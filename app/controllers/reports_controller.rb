@@ -29,7 +29,8 @@ class ReportsController < ApplicationController
     categories = @events.map(&:category).uniq
 
     categories.each do |category|
-      # duration = @events.where(category: category).sum(&:duration)
+      next if category.nil?
+      
       duration = @events.select { |e| e.category == category }.sum(&:duration_in_minutes)
       g.data(category, [duration])
     end
