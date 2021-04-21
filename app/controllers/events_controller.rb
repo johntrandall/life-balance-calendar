@@ -18,6 +18,17 @@ class EventsController < ApplicationController
     @events = current_user.events
   end
 
+  def update
+    @event = Event.find(params[:id])
+    @event.update!(event_params)
+
+    redirect_to events_path
+  end
+
+  def event_params
+    params.permit(:category)
+  end
+
   private
 
   def google_calendar_service
