@@ -1,0 +1,9 @@
+<p>
+  hello World
+</p>
+
+<% if !current_user %>
+  <%= button_to "Sign in with Google", user_google_oauth2_omniauth_authorize_path %>
+<% else %>
+  <p>congrats, <%= current_user.email %> google sign in worked.</p>
+<% end %>
